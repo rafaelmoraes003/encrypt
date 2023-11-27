@@ -1,7 +1,7 @@
 import string, random
 
 alphabet = string.ascii_lowercase + string.ascii_uppercase
-punctuation = string.punctuation
+punctuation = "!@#$%&=><?*"
 
 letters = {}
 positions = {}
@@ -54,7 +54,7 @@ def decrypt(message: str):
     return decrypted_message
 
 
-message = "wow 1t workS!!"
+message = "heLLo, wOrld! :3"
 
 encrypted_message = encrypt(message)
 print(encrypted_message)
