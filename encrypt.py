@@ -1,17 +1,22 @@
 import string, random
 
-alphabet = string.ascii_lowercase
+alphabet = string.ascii_lowercase + string.ascii_uppercase
 punctuation = string.punctuation
 
 letters = {}
 positions = {}
 
-for i in range(len(alphabet)):
+for i in range(26):
     letters[alphabet[i]] = i + 1
+    letters[alphabet[26 + i]] = 26 + i + 2
     positions[i + 1] = alphabet[i]
+    positions[-26 + i] = alphabet[26 + i]
 
 def random_symbol():
     return punctuation[random.randint(0, len(punctuation) - 1)]
+
+def random_letter():
+    return alphabet[random.randint(0, len(alphabet) - 1)]
 
 def is_space(i, j):
     return i == "5" and j == "#"
@@ -24,9 +29,9 @@ def encrypt(message: str):
             if message[i] in alphabet:
                 pos = letters[message[i]]
                 op = 27 - pos
-                encrypted_message += random_symbol()  + random_symbol() + positions[op]
+                encrypted_message += random_symbol()  + random_letter() + positions[op]
             else:
-                encrypted_message += random_symbol() + random_symbol() + message[i]
+                encrypted_message += random_letter() + random_symbol() + message[i]
         else:
             encrypted_message += "#5s"
 
@@ -49,7 +54,7 @@ def decrypt(message: str):
     return decrypted_message
 
 
-message = "it works!!"
+message = "wow 1t workS!!"
 
 encrypted_message = encrypt(message)
 print(encrypted_message)
